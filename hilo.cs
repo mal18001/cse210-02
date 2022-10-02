@@ -21,10 +21,10 @@ public class card {
         Random rnd = new Random();
         int card_number = rnd.Next(1,14);
         int index = card_number - 1;
-        call_function.print_card(card_number, index);
+        call_function.print_card(index);
         return card_number;
     }
-    public string print_card(int card_number, int index) {
+    public string print_card(int index) {
         Console.WriteLine(all_card_templates[index]);
 
         return "";
