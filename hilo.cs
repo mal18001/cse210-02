@@ -11,7 +11,7 @@ public class card {
     public string card_template_3 = ".-----------.\n|    ___    |\n|  .'   '.  |\n|        |  |\n|    ----   |\n|        |  |\n|  '.___.'  |\n|           |\n'-----------'";
     public string card_template_4 = ".-----------.\n|           |\n|    /  |   |\n|   /   |   |\n|  /____|_  |\n|       |   |\n|       |   |\n|           |\n'-----------'";
     public string card_template_5 = ".-----------.\n|   _____   |\n|  |        |\n|  |____    |\n|       '.  |\n|        |  |\n|  '.___.'  |\n|           |\n'-----------'";
-    public string card_template_6 = ".-----------.\n|    ____   |\n|   /       |\n|  | ___    |\n|  |'   '|  |\n|  |     |  |\n|  '.___.'  |\n|           |\n'-----------'";
+    public string card_template_6 = ".-----------.\n|    ____   |\n|  .'       |\n|  | ___    |\n|  |'   '.  |\n|  |     |  |\n|  '.___.'  |\n|           |\n'-----------'";
     public string card_template_7 = ".-----------.\n|  _______  |\n|        /  |\n|       /   |\n|      /    |\n|     /     |\n|    /      |\n|           |\n'-----------'";
     public string card_template_8 = ".-----------.\n|    ___    |\n|  .'   '.  |\n|  '.___.'  |\n|  .'   '.  |\n|  |     |  |\n|  '.___.'  |\n|           |\n'-----------'";
     public string card_template_9 = ".-----------.\n|    ___    |\n|  .'   '.  |\n|  |     |  |\n|  '.___.|  |\n|        |  |\n|  '.___.'  |\n|           |\n'-----------'";
