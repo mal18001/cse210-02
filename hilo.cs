@@ -19,7 +19,7 @@ public class card {
     public bool correct;
     public bool no_win_or_lose = true;
 
-    public int _points = 0;
+    public int _points = 300;
 
 
     public string display_win_or_lose(bool correct, bool no_win_or_lose, int[] card_numbers_used) {
