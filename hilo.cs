@@ -25,7 +25,7 @@ public class card {
     public void display_win_or_lose(bool correct, bool no_win_or_lose, int[] card_numbers_used) {
         if (correct == true) {
             _points += 100 ;
-            Console.WriteLine("\n       You win! Good guess!");
+            Console.WriteLine("\n       Correct! Good guess!");
         }
         else if (correct == false) {
             if (no_win_or_lose == true) {
