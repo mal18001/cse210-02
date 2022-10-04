@@ -19,12 +19,17 @@ public class card {
     public bool correct;
     public bool no_win_or_lose = true;
 
+    public int _points = 0;
+
+
     public string display_win_or_lose(bool correct, bool no_win_or_lose, int[] card_numbers_used) {
         if (correct == true) {
+            _points += 100 ;
             Console.WriteLine("\n       You win! Good guess!");
         }
         else if (correct == false) {
             if (no_win_or_lose == true) {
+                _points -= 75;
                 Console.WriteLine("\n Same number! Who would've thought?");
             }
             else {
@@ -94,6 +99,7 @@ public class card {
     }
 
     public string loop_until_done(int[] card_numbers_used) {
+        Console.WriteLine($"\n Your score is: {_points}");
         Console.WriteLine("\n   Would you like to play again?\n       Yes (y)  or  No (n)?");
         string? answer = Console.ReadLine();
         if (answer == "y") {
