@@ -99,7 +99,7 @@ public class card {
     }
 
     public string loop_until_done(int[] card_numbers_used) {
-        Console.WriteLine($"\n  Your score is: {_points}");
+        Console.WriteLine($"\n     Your score is: {_points} points.");
         Console.WriteLine("\n   Would you like to play again?\n       Yes (y)  or  No (n)?");
         string? answer = Console.ReadLine();
         if (answer == "y") {
@@ -127,7 +127,7 @@ public class card {
     }
     public static void Main(string[] args) {
         int[] card_numbers_used = {};
-        Console.WriteLine("\n Welcome to Hilo! your starting score is 300 points.");
+        Console.WriteLine("\n Welcome to Hilo! your starting score\n           is 300 points.");
         call_function.get_new_card(card_numbers_used);
     }
 }
