@@ -5,7 +5,7 @@ public class score{
 
     public void display_win_or_lose(bool correct, bool no_win_or_lose, int[] card_numbers_used) {
         if (correct == true) {
-            _points += 100 ;
+            points += 100 ;
             Console.WriteLine("\n       You win! Good guess!");
         }
         else if (correct == false) {
@@ -13,7 +13,7 @@ public class score{
                 Console.WriteLine("\n Same number! Who would've thought?");
             }
             else {
-                _points -= 75;
+                points -= 75;
                 Console.WriteLine("\n     Sorry, that wasn't right.");
             }
         }
