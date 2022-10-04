@@ -22,7 +22,7 @@ public class card {
     public int _points = 300;
 
 
-    public string display_win_or_lose(bool correct, bool no_win_or_lose, int[] card_numbers_used) {
+    public void display_win_or_lose(bool correct, bool no_win_or_lose, int[] card_numbers_used) {
         if (correct == true) {
             _points += 100 ;
             Console.WriteLine("\n       You win! Good guess!");
@@ -37,14 +37,12 @@ public class card {
             }
         }
         call_function.loop_until_done(card_numbers_used);
-        return "";
     }
 
-    public string print_card(bool correct, bool no_win_or_lose, int[] card_numbers_used) {
+    public void print_card(bool correct, bool no_win_or_lose, int[] card_numbers_used) {
         Console.WriteLine(all_card_templates[card_numbers_used[card_numbers_used.Length - 1] - 1]);
         call_function.display_win_or_lose(correct, no_win_or_lose, card_numbers_used);
 
-        return "";
     }
 
     public bool higher_or_lower(string? guess, int[] card_numbers_used) {
@@ -91,14 +89,13 @@ public class card {
         return correct;
     }
 
-    public string ask_for_guess(int[] card_numbers_used) {
+    public void ask_for_guess(int[] card_numbers_used) {
         Console.WriteLine("\nDo you think the next card will be:\n    Higher (h)  or  Lower (l)?\n");
         string? guess = Console.ReadLine();
         call_function.higher_or_lower(guess, card_numbers_used);
-        return "";
     }
 
-    public string loop_until_done(int[] card_numbers_used) {
+    public void loop_until_done(int[] card_numbers_used) {
         Console.WriteLine($"\n    Your score is: {_points} points.");
         Console.WriteLine("\n   Would you like to play again?\n       Yes (y)  or  No (n)?");
         string? answer = Console.ReadLine();
@@ -108,10 +105,9 @@ public class card {
         else if (answer == "n") {
             Console.WriteLine("        Thanks for Playing!\n");
         }
-        return "";
     }
     
-    public int get_new_card(int[] card_numbers_used) {
+    public void get_new_card(int[] card_numbers_used) {
         Random rnd = new Random();
         int card_number = rnd.Next(1,14);
         card_numbers_used = card_numbers_used.Append(card_number).ToArray();
@@ -123,7 +119,6 @@ public class card {
         }
         Console.WriteLine($"\n         This is your card:\n\n{all_card_templates[card_numbers_used[card_numbers_used.Length - 2] - 1]}");
         call_function.ask_for_guess(card_numbers_used);
-        return 0;
     }
     public static void Main(string[] args) {
         int[] card_numbers_used = {};
