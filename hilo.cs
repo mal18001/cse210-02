@@ -29,10 +29,10 @@ public class card {
         }
         else if (correct == false) {
             if (no_win_or_lose == true) {
-                _points -= 75;
                 Console.WriteLine("\n Same number! Who would've thought?");
             }
             else {
+                _points -= 75;
                 Console.WriteLine("\n     Sorry, that wasn't right.");
             }
         }
@@ -99,7 +99,7 @@ public class card {
     }
 
     public string loop_until_done(int[] card_numbers_used) {
-        Console.WriteLine($"\n Your score is: {_points}");
+        Console.WriteLine($"\n  Your score is: {_points}");
         Console.WriteLine("\n   Would you like to play again?\n       Yes (y)  or  No (n)?");
         string? answer = Console.ReadLine();
         if (answer == "y") {
