@@ -99,7 +99,7 @@ public class card {
     }
 
     public string loop_until_done(int[] card_numbers_used) {
-        Console.WriteLine($"\n     Your score is: {_points} points.");
+        Console.WriteLine($"\n    Your score is: {_points} points.");
         Console.WriteLine("\n   Would you like to play again?\n       Yes (y)  or  No (n)?");
         string? answer = Console.ReadLine();
         if (answer == "y") {
