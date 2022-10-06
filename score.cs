@@ -46,7 +46,7 @@ namespace HiLo
     /// gameover when points = 0
     /// </summary> 
         public void gameover(){
-            if (points == 0){
+            if (points <= 0){
                 Console.WriteLine("Gameover");
             }
         }
