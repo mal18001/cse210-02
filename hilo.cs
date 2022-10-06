@@ -3,7 +3,7 @@ namespace HiLo {
     public class card {
         public static card call_card_function = new card();
         public static score call_score_function = new score();
-
+        // all of the templates for the cards
         public static string card_template_1 = "           .-----------.\n           |     _     |\n           |    /|     |\n           |   / |     |\n           |     |     |\n           |     |     |\n           |  ___|___  |\n           |           |\n           '-----------'";
         public static string card_template_2 = "           .-----------.\n           |    ___    |\n           |  .'   '.  |\n           |        |  |\n           |     __.'  |\n           |   .'      |\n           |  |______  |\n           |           |\n           '-----------'";
         public static string card_template_3 = "           .-----------.\n           |    ___    |\n           |  .'   '.  |\n           |        |  |\n           |    ----   |\n           |        |  |\n           |  '.___.'  |\n           |           |\n           '-----------'";
@@ -18,73 +18,61 @@ namespace HiLo {
         public static string card_template_12 = "           .-----------.\n           |  _   __   |\n           | /| .'  '. |\n           |  |      | |\n           |  |    .'  |\n           |  |  .'    |\n           | _|_'.____ |\n           |           |\n           '-----------'";
         public static string card_template_13 = "           .-----------.\n           |  _   __   |\n           | /| .'  '. |\n           |  |      | |\n           |  |   ---  |\n           |  |      | |\n           | _|_'.__.' |\n           |           |\n           '-----------'";
         public static string[] all_card_templates = {card_template_1,card_template_2,card_template_3,card_template_4,card_template_5,card_template_6,card_template_7,card_template_8,card_template_9,card_template_10,card_template_11,card_template_12,card_template_13};
-        public bool correct;
-        public bool no_win_or_lose = true;
 
         public score points = new score();
 
 
+        // print the card, pulling from the list of templates
         public void print_card(bool correct, bool no_win_or_lose, int[] card_numbers_used) {
             Console.WriteLine(all_card_templates[card_numbers_used[card_numbers_used.Length - 1] - 1]);
             points.display_win_or_lose();
-
         }
 
+        // determine if the users guess is correct
         public bool higher_or_lower(string? guess, int[] card_numbers_used) {
             int first_card = card_numbers_used[card_numbers_used.Length - 2];
             int next_card = card_numbers_used[card_numbers_used.Length - 1];
-            bool correct = false;
-            no_win_or_lose = false;
+            // if the user guessed higher
             if (guess == "h") {
                 if (first_card < next_card) {
                     points.correct = true;
                     points.no_win_or_lose = false;
-                    call_card_function.print_card(correct, no_win_or_lose, card_numbers_used);
-                    return correct;
                 }
                 else if (first_card > next_card) {
                     points.correct = false;
                     points.no_win_or_lose = false;
-                    call_card_function.print_card(correct, no_win_or_lose, card_numbers_used);
-                    return correct;
                 }
                 else if (first_card == next_card) {
                     points.no_win_or_lose = true;
-                    call_card_function.print_card(correct, no_win_or_lose, card_numbers_used);
-                    return no_win_or_lose;
                 }
             }
-
+            //if the user guessed lower
             else if (guess == "l") {
                 if (first_card > next_card) {
                     points.correct = true;
                     points.no_win_or_lose = false;
-                    call_card_function.print_card(correct, no_win_or_lose, card_numbers_used);
-                    return correct;
                 }
                 else if (first_card < next_card) {
                     points.correct = false;
                     points.no_win_or_lose = false;
-                    call_card_function.print_card(correct, no_win_or_lose, card_numbers_used);
-                    return correct;
                 }
                 else if (first_card == next_card) {
                     points.correct = false;
                     points.no_win_or_lose = true;
-                    call_card_function.print_card(correct, no_win_or_lose, card_numbers_used);
-                    return no_win_or_lose;
                 }
             }
-            call_card_function.print_card(correct, no_win_or_lose, card_numbers_used);
-            return correct;
+            call_card_function.print_card(points.correct, points.no_win_or_lose, card_numbers_used);
+            return points.correct;
         }
 
+        // ask the user for their guess
         public void ask_for_guess(int[] card_numbers_used) {
             Console.WriteLine("\nDo you think the next card will be:\n    Higher (h)  or  Lower (l)?\n");
             string? guess = Console.ReadLine();
             call_card_function.higher_or_lower(guess, card_numbers_used);
         }
 
+        // ask the user if they would like to play again
         public bool loop_until_done(int[] card_numbers_used) {
             Console.WriteLine($"\n    Your score is: {points.get_score()} points.");
             Console.WriteLine("\n   Would you like to play again?\n       Yes (y)  or  No (n)?");
@@ -98,7 +86,7 @@ namespace HiLo {
             }
             return false;
         }
-
+        //generate a new card
         public void get_new_card(int[] card_numbers_used) {
             Random rnd = new Random();
             int card_number = rnd.Next(1,14);
