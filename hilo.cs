@@ -20,29 +20,12 @@ namespace HiLo{
         public bool correct;
         public bool no_win_or_lose = true;
 
-        public int _points = 300;
+        public score points = new score();
 
-
-        public void display_win_or_lose(bool correct, bool no_win_or_lose, int[] card_numbers_used) {
-            if (correct == true) {
-                _points += 100 ;
-                Console.WriteLine("\n       Correct! Good guess!");
-            }
-            else if (correct == false) {
-                if (no_win_or_lose == true) {
-                    Console.WriteLine("\n Same number! Who would've thought?");
-                }
-                else {
-                    _points -= 75;
-                    Console.WriteLine("\n     Sorry, that wasn't right.");
-                }
-            }
-            call_function.loop_until_done(card_numbers_used);
-        }
 
         public void print_card(bool correct, bool no_win_or_lose, int[] card_numbers_used) {
             Console.WriteLine(all_card_templates[card_numbers_used[card_numbers_used.Length - 1] - 1]);
-            call_function.display_win_or_lose(correct, no_win_or_lose, card_numbers_used);
+            points.display_win_or_lose();
 
         }
 
@@ -96,16 +79,18 @@ namespace HiLo{
             call_function.higher_or_lower(guess, card_numbers_used);
         }
 
-        public void loop_until_done(int[] card_numbers_used) {
-            Console.WriteLine($"\n    Your score is: {_points} points.");
+        public bool loop_until_done(int[] card_numbers_used) {
+            Console.WriteLine($"\n    Your score is: {points} points.");
             Console.WriteLine("\n   Would you like to play again?\n       Yes (y)  or  No (n)?");
             string? answer = Console.ReadLine();
             if (answer == "y") {
-                call_function.get_new_card(card_numbers_used);
+                return true;
             }
             else if (answer == "n") {
                 Console.WriteLine("        Thanks for Playing!\n");
+                return false;
             }
+            return false;
         }
 
         public void get_new_card(int[] card_numbers_used) {
@@ -124,7 +109,9 @@ namespace HiLo{
         public static void Main(string[] args) {
             int[] card_numbers_used = {};
             Console.WriteLine("\n Welcome to Hilo! your starting score\n           is 300 points.");
-            call_function.get_new_card(card_numbers_used);
+            do{
+                call_function.get_new_card(card_numbers_used);
+            }while(call_function.loop_until_done(card_numbers_used));
         }
     }
 }
