@@ -29,6 +29,10 @@ namespace HiLo
             
         }
 
+        public int get_score(){
+            return points;
+        }
+
         public void gameover(){
             if (points == 0){
                 Console.WriteLine("Gameover");

@@ -81,7 +81,7 @@ namespace HiLo {
         }
 
         public bool loop_until_done(int[] card_numbers_used) {
-            Console.WriteLine($"\n    Your score is: {points} points.");
+            Console.WriteLine($"\n    Your score is: {points.get_score()} points.");
             Console.WriteLine("\n   Would you like to play again?\n       Yes (y)  or  No (n)?");
             string? answer = Console.ReadLine();
             if (answer == "y") {
