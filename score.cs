@@ -2,6 +2,7 @@ namespace HiLo
 {
     public class score{
         public static card call_function = new card();
+        public static score call_score_function = new score();
         public int points;
         public bool correct;
         public bool no_win_or_lose;
@@ -32,6 +33,8 @@ namespace HiLo
                     Console.WriteLine("\n     Sorry, that wasn't right.");
                 }
             }
+            call_score_function.gameover();
+
             
         }
 
@@ -47,7 +50,7 @@ namespace HiLo
     /// </summary> 
         public void gameover(){
             if (points <= 0){
-                Console.WriteLine("Gameover");
+                Console.WriteLine("Game Over");
             }
         }
    }    
