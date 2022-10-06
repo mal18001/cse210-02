@@ -37,17 +37,19 @@ namespace HiLo {
             no_win_or_lose = false;
             if (guess == "h") {
                 if (first_card < next_card) {
-                    correct = true;
+                    points.correct = true;
+                    points.no_win_or_lose = false;
                     call_card_function.print_card(correct, no_win_or_lose, card_numbers_used);
                     return correct;
                 }
                 else if (first_card > next_card) {
-                    correct = false;
+                    points.correct = false;
+                    points.no_win_or_lose = false;
                     call_card_function.print_card(correct, no_win_or_lose, card_numbers_used);
                     return correct;
                 }
                 else if (first_card == next_card) {
-                    no_win_or_lose = true;
+                    points.no_win_or_lose = true;
                     call_card_function.print_card(correct, no_win_or_lose, card_numbers_used);
                     return no_win_or_lose;
                 }
@@ -55,17 +57,20 @@ namespace HiLo {
 
             else if (guess == "l") {
                 if (first_card > next_card) {
-                    correct = true;
+                    points.correct = true;
+                    points.no_win_or_lose = false;
                     call_card_function.print_card(correct, no_win_or_lose, card_numbers_used);
                     return correct;
                 }
                 else if (first_card < next_card) {
-                    correct = false;
+                    points.correct = false;
+                    points.no_win_or_lose = false;
                     call_card_function.print_card(correct, no_win_or_lose, card_numbers_used);
                     return correct;
                 }
                 else if (first_card == next_card) {
-                    no_win_or_lose = true;
+                    points.correct = false;
+                    points.no_win_or_lose = true;
                     call_card_function.print_card(correct, no_win_or_lose, card_numbers_used);
                     return no_win_or_lose;
                 }
