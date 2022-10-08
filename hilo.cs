@@ -23,14 +23,16 @@ namespace HiLo {
         public score points = new score();
         public int[] card_numbers_used = {};
         public int next_card_number;
-
-        // print the card, pulling from the list of templates
+        /// <summary>
+        /// Prints the card, pulling it from the list of templates
+        /// </summary>
         public void print_card(bool correct, bool no_win_or_lose) {
             Console.WriteLine(all_card_templates[card_numbers_used[card_numbers_used.Length - 1] - 1]);
             points.display_win_or_lose();
         }
-
-        // determine if the users guess is correct
+        /// <summary>
+        /// Determines if the user's guess is correct
+        /// </summary>
         public bool higher_or_lower(string? guess) {
             int first_card = card_numbers_used[card_numbers_used.Length - 2];
             int next_card = card_numbers_used[card_numbers_used.Length - 1];
@@ -45,6 +47,7 @@ namespace HiLo {
                     points.no_win_or_lose = false;
                 }
                 else if (first_card == next_card) {
+                    points.correct = false;
                     points.no_win_or_lose = true;
                 }
             }
@@ -66,17 +69,24 @@ namespace HiLo {
             call_card_function.print_card(points.correct, points.no_win_or_lose);
             return points.correct;
         }
-
-        // ask the user for their guess
+        /// <summary>
+        /// Asks the user for their guess
+        /// </summary>
         public void ask_for_guess() {
             Console.WriteLine("\nDo you think the next card will be:\n    Higher (h)  or  Lower (l)?\n");
             string? guess = Console.ReadLine();
             call_card_function.higher_or_lower(guess);
         }
 
-        // ask the user if they would like to play again
+        /// <summary>
+        /// Asks the user if they would like to play again, or ends the game if game over
+        /// </summary>
         public bool loop_until_done() {
+            if (points.points <= 0) {
+                return false;
+            }
             Console.WriteLine($"\n    Your score is: {points.get_score()} points.");
+
             Console.WriteLine("\n   Would you like to play again?\n       Yes (y)  or  No (n)?");
             string? answer = Console.ReadLine();
             if (answer == "y") {
@@ -88,7 +98,9 @@ namespace HiLo {
             }
             return false;
         }
-        //generate a new card
+        /// <summary>
+        /// Generate a new card
+        /// </summary>
         public int [] get_new_card() {
             next_card_number = rnd.Next(1,14);
             card_numbers_used = card_numbers_used.Append(next_card_number).ToArray();
@@ -97,7 +109,9 @@ namespace HiLo {
             call_card_function.ask_for_guess();
             return card_numbers_used;
         }
-
+        /// <summary>
+        /// Gets the first card of the game
+        /// </summary>
         public int [] get_first_card() {
             int first_card_number = rnd.Next(1,14);
             card_numbers_used = card_numbers_used.Append(first_card_number).ToArray();
