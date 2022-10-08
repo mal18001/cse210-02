@@ -18,18 +18,20 @@ namespace HiLo {
         public static string card_template_12 = "           .-----------.\n           |  _   __   |\n           | /| .'  '. |\n           |  |      | |\n           |  |    .'  |\n           |  |  .'    |\n           | _|_'.____ |\n           |           |\n           '-----------'";
         public static string card_template_13 = "           .-----------.\n           |  _   __   |\n           | /| .'  '. |\n           |  |      | |\n           |  |   ---  |\n           |  |      | |\n           | _|_'.__.' |\n           |           |\n           '-----------'";
         public static string[] all_card_templates = {card_template_1,card_template_2,card_template_3,card_template_4,card_template_5,card_template_6,card_template_7,card_template_8,card_template_9,card_template_10,card_template_11,card_template_12,card_template_13};
+        public Random rnd = new Random();
 
         public score points = new score();
-
+        public int[] card_numbers_used = {};
+        public int next_card_number;
 
         // print the card, pulling from the list of templates
-        public void print_card(bool correct, bool no_win_or_lose, int[] card_numbers_used) {
+        public void print_card(bool correct, bool no_win_or_lose) {
             Console.WriteLine(all_card_templates[card_numbers_used[card_numbers_used.Length - 1] - 1]);
             points.display_win_or_lose();
         }
 
         // determine if the users guess is correct
-        public bool higher_or_lower(string? guess, int[] card_numbers_used) {
+        public bool higher_or_lower(string? guess) {
             int first_card = card_numbers_used[card_numbers_used.Length - 2];
             int next_card = card_numbers_used[card_numbers_used.Length - 1];
             // if the user guessed higher
@@ -61,19 +63,19 @@ namespace HiLo {
                     points.no_win_or_lose = true;
                 }
             }
-            call_card_function.print_card(points.correct, points.no_win_or_lose, card_numbers_used);
+            call_card_function.print_card(points.correct, points.no_win_or_lose);
             return points.correct;
         }
 
         // ask the user for their guess
-        public void ask_for_guess(int[] card_numbers_used) {
+        public void ask_for_guess() {
             Console.WriteLine("\nDo you think the next card will be:\n    Higher (h)  or  Lower (l)?\n");
             string? guess = Console.ReadLine();
-            call_card_function.higher_or_lower(guess, card_numbers_used);
+            call_card_function.higher_or_lower(guess);
         }
 
         // ask the user if they would like to play again
-        public bool loop_until_done(int[] card_numbers_used) {
+        public bool loop_until_done() {
             Console.WriteLine($"\n    Your score is: {points.get_score()} points.");
             Console.WriteLine("\n   Would you like to play again?\n       Yes (y)  or  No (n)?");
             string? answer = Console.ReadLine();
@@ -87,25 +89,28 @@ namespace HiLo {
             return false;
         }
         //generate a new card
-        public void get_new_card(int[] card_numbers_used) {
-            Random rnd = new Random();
-            int card_number = rnd.Next(1,14);
-            card_numbers_used = card_numbers_used.Append(card_number).ToArray();
+        public int [] get_new_card() {
+            next_card_number = rnd.Next(1,14);
+            card_numbers_used = card_numbers_used.Append(next_card_number).ToArray();
             int array_length = card_numbers_used.Length;
-            if (array_length == 1) {
-                int second_card_number = rnd.Next(1,14);
-                card_numbers_used = card_numbers_used.Append(second_card_number).ToArray();
-
-            }
-            Console.WriteLine($"\n         This is your card:\n\n{all_card_templates[card_numbers_used[card_numbers_used.Length - 2] - 1]}");
-            call_card_function.ask_for_guess(card_numbers_used);
+            Console.WriteLine($"\n         This is your card:\n\n{all_card_templates[card_numbers_used[array_length - 2] - 1]}");
+            call_card_function.ask_for_guess();
+            return card_numbers_used;
         }
-        public static void Main(string[] args) {
-            int[] card_numbers_used = {};
-            Console.WriteLine("\n Welcome to Hilo! your starting score\n           is 300 points.");
+
+        public int [] get_first_card() {
+            int first_card_number = rnd.Next(1,14);
+            card_numbers_used = card_numbers_used.Append(first_card_number).ToArray();
             do{
-                call_card_function.get_new_card(card_numbers_used);
-            }while(call_card_function.loop_until_done(card_numbers_used));
+                call_card_function.get_new_card();
+            }while(call_card_function.loop_until_done());
+            return card_numbers_used;
+
+        }
+
+        public static void Main(string[] args) {
+            Console.WriteLine("\n Welcome to Hilo! your starting score\n           is 300 points.");
+            call_card_function.get_first_card();
         }
     }
 }
